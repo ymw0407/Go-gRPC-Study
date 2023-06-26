@@ -1,0 +1,7 @@
+go 1.18
+
+use (
+	./REST_API_TEST1
+	./gRPC_test
+	./go-quickstart
+)

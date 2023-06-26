@@ -1,0 +1,36 @@
+/*
+    proto 컴파일 관련 에러 : https://darkstart.tistory.com/160
+    proto 컴파일 관련 에러2 : https://stackoverflow.com/questions/60578892/protoc-gen-go-grpc-program-not-found-or-is-not-executable
+*/
+
+syntax = "proto3";
+
+package v1.user;
+
+option go_package = "github.com/ymw0407/GoLang-Studying/protos/v1/user";
+
+service User {
+    rpc GetUser(GetUserRequest) returns (GetUserResponse);
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+}
+
+message UserMessage {
+    string user_id = 1;
+    string name = 2;
+    string phone_number = 3;
+    int32 age = 4;
+}
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+message GetUserResponse {
+    UserMessage user_message = 1;
+}
+
+message ListUsersRequest{}
+
+message ListUsersResponse {
+    repeated UserMessage user_messages = 1;
+}
