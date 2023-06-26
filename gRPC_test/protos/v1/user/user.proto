@@ -1,11 +1,17 @@
 /*
     proto 컴파일 관련 에러 : https://darkstart.tistory.com/160
     proto 컴파일 관련 에러2 : https://stackoverflow.com/questions/60578892/protoc-gen-go-grpc-program-not-found-or-is-not-executable
+    proto 문법 관련 : https://jaime-note.tistory.com/83
 */
 
-syntax = "proto3";
-
+syntax = "proto3"; 
+/*
+첫 번 째 줄은 proto3 문을 사용함을 의미합니다. 
+이렇게 명시하지 않으면 프로토콜 버퍼 컴파일러가 proto2를 기본으로 사용합니다. 
+반드시 첫 번 째 줄에 작성해야 합니다.
+*/
 package v1.user;
+
 
 option go_package = "github.com/ymw0407/GoLang-Studying/protos/v1/user";
 
