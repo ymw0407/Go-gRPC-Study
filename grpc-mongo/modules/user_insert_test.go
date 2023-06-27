@@ -1,4 +1,4 @@
-package db_test
+package module_test
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 
-	db "grpc-mongo/db"
+	db "grpc-mongo/modules"
 )
 
 func Test_MongoConnection(t *testing.T) {
