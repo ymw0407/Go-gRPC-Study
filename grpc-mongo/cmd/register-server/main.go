@@ -20,8 +20,8 @@ type signServer struct {
 }
 
 func (s *signServer) SignUp(ctx context.Context, req *userpb.SignUpRequest) (*userpb.SignUpResponse, error) {
-	user_name, user_email := req.User.Name, req.User.Email
-	newUser := db.User{user_name, user_email}
+	user_id, user_name, user_gender, user_email, user_password := req.User.Id, req.User.Name, req.User.Gender, req.User.Email, req.Password
+	newUser := db.User{user_id, user_name, user_gender, user_email, user_password}
 
 	if err := godotenv.Load(); err != nil {
 		log.Println(".env file not found")

@@ -36,6 +36,6 @@ func Test_MongoUserInsert(t *testing.T) {
 	client := db.MongoConnection(MONGODB_URI)
 	defer db.MongoDisconnection(client)
 
-	user := db.User{"민우", "yunminwo1211@gmail.com"}
+	user := db.User{"ymw040", "민우", "남자", "yunminwo1211@gmail.com", "password"}
 	db.MongoUserInsert(user, client.Database("grpc").Collection("users"))
 }

@@ -4,4 +4,5 @@ use (
 	./REST_API_TEST1
 	./gRPC_test
 	./go-quickstart
+	./grpc-mongo
 )
