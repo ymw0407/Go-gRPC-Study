@@ -7,13 +7,13 @@ import "google/api/annotations.proto";
 service UserService {
     rpc SignUp(SignUpRequest) returns (SignUpResponse){
         option (google.api.http) = {
-            post: "/sign"
+            post: "/signUp"
             body: "*"
         };
     }
     /*
     요청 형식
-    URL : localhost:9000/sign
+    URL : localhost:9000/signUp
     HTTP method : POST
     Body :
         {
@@ -31,10 +31,9 @@ service UserService {
             "message": "User Seccessfully Inserted"
         }
     */
-    rpc LogIn(LogInRequest) returns (LogInRequest){
+    rpc LogIn(LogInRequest) returns (LogInResponse){
         option (google.api.http) = {
-            post: "/user"
-            body: "*"
+            get: "/logIn/{id}/{password}"
         };
     }
 } 

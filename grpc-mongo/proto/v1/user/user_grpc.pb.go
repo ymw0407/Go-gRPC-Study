@@ -19,7 +19,26 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
-	LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInRequest, error)
+	//
+	//요청 형식
+	//URL : localhost:9000/signUp
+	//HTTP method : POST
+	//Body :
+	//{
+	//"user": {
+	//"id": "yun1211",
+	//"name": "민우",
+	//"gender": "남자",
+	//"email": "yunminwo1211@gmail.com"
+	//},
+	//"password": "비밀번호"
+	//}
+	//response :
+	//{
+	//"success": true,
+	//"message": "User Seccessfully Inserted"
+	//}
+	LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInResponse, error)
 }
 
 type userServiceClient struct {
@@ -39,8 +58,8 @@ func (c *userServiceClient) SignUp(ctx context.Context, in *SignUpRequest, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInRequest, error) {
-	out := new(LogInRequest)
+func (c *userServiceClient) LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInResponse, error) {
+	out := new(LogInResponse)
 	err := c.cc.Invoke(ctx, "/UserService/LogIn", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -53,7 +72,26 @@ func (c *userServiceClient) LogIn(ctx context.Context, in *LogInRequest, opts ..
 // for forward compatibility
 type UserServiceServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
-	LogIn(context.Context, *LogInRequest) (*LogInRequest, error)
+	//
+	//요청 형식
+	//URL : localhost:9000/signUp
+	//HTTP method : POST
+	//Body :
+	//{
+	//"user": {
+	//"id": "yun1211",
+	//"name": "민우",
+	//"gender": "남자",
+	//"email": "yunminwo1211@gmail.com"
+	//},
+	//"password": "비밀번호"
+	//}
+	//response :
+	//{
+	//"success": true,
+	//"message": "User Seccessfully Inserted"
+	//}
+	LogIn(context.Context, *LogInRequest) (*LogInResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -64,7 +102,7 @@ type UnimplementedUserServiceServer struct {
 func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedUserServiceServer) LogIn(context.Context, *LogInRequest) (*LogInRequest, error) {
+func (UnimplementedUserServiceServer) LogIn(context.Context, *LogInRequest) (*LogInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogIn not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}

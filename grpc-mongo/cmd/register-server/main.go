@@ -49,38 +49,38 @@ func (s *userService) SignUp(ctx context.Context, req *userpb.SignUpRequest) (*u
 
 }
 
-// func (s *userService) LogIn(ctx context.Context, req *userpb.LogInRequest) (*userpb.LogInResponse, error) {
-// 	user_id, user_password := req.Id, req.Password
-// 	logIn := module.LogIn{user_id, user_password}
+func (s *userService) LogIn(ctx context.Context, req *userpb.LogInRequest) (*userpb.LogInResponse, error) {
+	user_id, user_password := req.Id, req.Password
+	logIn := module.LogIn{user_id, user_password}
 
-// 	if err := godotenv.Load(); err != nil {
-// 		log.Println(".env file not found")
-// 		return &userpb.LogInResponse{
-// 			Success: false,
-// 			User:    &userpb.User{},
-// 		}, nil
-// 	}
-// 	MONGODB_URI := os.Getenv("MONGODB_URI")
+	if err := godotenv.Load(); err != nil {
+		log.Println(".env file not found")
+		return &userpb.LogInResponse{
+			Success: false,
+			Message: "asdfadf",
+		}, nil
+	}
+	MONGODB_URI := os.Getenv("MONGODB_URI")
 
-// 	module.MongoConnection(MONGODB_URI)
+	module.MongoConnection(MONGODB_URI)
 
-// 	client := module.MongoConnection(MONGODB_URI)
-// 	defer module.MongoDisconnection(client)
+	client := module.MongoConnection(MONGODB_URI)
+	defer module.MongoDisconnection(client)
 
-// 	module.MongoUserLogInFind(logIn, client.Database("grpc").Collection("users"))
+	module.MongoUserLogInFind(logIn, client.Database("grpc").Collection("users"))
 
-// 	return &userpb.LogInResponse{
-// 		Success: true,
-// 		Message: "",
-// 		User: &userpb.User{
-// 			Id:     "1",
-// 			Name:   "John",
-// 			Gender: "Male",
-// 			Email:  "john@example.com",
-// 		},
-// 	}, nil
+	return &userpb.LogInResponse{
+		Success: false,
+		Message: "asdfadf",
+		User: &userpb.User{
+			Id:     "gadsf",
+			Name:   "",
+			Gender: "",
+			Email:  "",
+		},
+	}, nil
 
-// }
+}
 
 func main() {
 	lis, err := net.Listen("tcp", ":"+portNumber)
