@@ -35,8 +35,4 @@ func MongoUserLogInFind(user LogIn, coll *mongo.Collection) (User, error) {
 	}
 	fmt.Printf("%s\n", jsonData)
 	return result, nil
-	// var user_id, user_name, user_gender, user_email string
-	// user_id, user_name, user_gender, user_email = jsonData.id, jsonData.name, jsonData.gender, jsonData.email
-
-	// return User{jsonData.id, jsonData.name, jsonData.gender, jsonData.email, user.Password}, ""
 }
