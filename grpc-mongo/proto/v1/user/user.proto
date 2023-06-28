@@ -8,11 +8,13 @@ service UserService {
     rpc SignUp(SignUpRequest) returns (SignUpResponse){
         option (google.api.http) = {
             post: "/sign"
+            body: "*"
         };
     }
     rpc LogIn(LogInRequest) returns (LogInRequest){
         option (google.api.http) = {
             post: "/user"
+            body: "*"
         };
     }
 } 
