@@ -4,16 +4,18 @@ import (
 	"context"
 	"log"
 	"net"
+	"net/http"
 	"os"
 
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 
 	module "grpc-mongo/modules"
-	userpb "grpc-mongo/protos/v1/user"
+	userpb "grpc-mongo/proto/v1/user"
 )
 
-const portNumber = "9000"
+const portNumber = "9001"
 
 type userService struct {
 	userpb.UserServiceServer
@@ -93,4 +95,14 @@ func main() {
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %s", err)
 	}
+
+	gwmux := runtime.NewServeMux()
+
+	gwServer := &http.Server{
+		Addr:    ":8090",
+		Handler: gwmux,
+	}
+
+	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8090")
+	log.Fatalln(gwServer.ListenAndServe())
 }

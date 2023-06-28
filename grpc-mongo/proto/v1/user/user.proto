@@ -1,10 +1,21 @@
 syntax = "proto3";
-option go_package = "grpc-mongo/protos/v1/user";
+
+option go_package = "grpc-mongo/proto/v1/user";
+
+import "google/api/annotations.proto"; 
 
 service UserService {
-    rpc SignUp(SignUpRequest) returns (SignUpResponse);
-    rpc LogIn(LogInRequest) returns (LogInRequest);
-}
+    rpc SignUp(SignUpRequest) returns (SignUpResponse){
+        option (google.api.http) = {
+            post: "/sign"
+        };
+    }
+    rpc LogIn(LogInRequest) returns (LogInRequest){
+        option (google.api.http) = {
+            post: "/user"
+        };
+    }
+} 
 
 message User {
     string id = 1;
