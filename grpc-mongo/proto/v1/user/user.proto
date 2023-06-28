@@ -11,6 +11,26 @@ service UserService {
             body: "*"
         };
     }
+    /*
+    요청 형식
+    URL : localhost:9000/sign
+    HTTP method : POST
+    Body :
+        {
+            "user": {
+                "id": "yun1211",
+                "name": "민우",
+                "gender": "남자",
+                "email": "yunminwo1211@gmail.com"
+            },
+            "password": "비밀번호"
+        }
+    response :
+        {
+            "success": true,
+            "message": "User Seccessfully Inserted"
+        }
+    */
     rpc LogIn(LogInRequest) returns (LogInRequest){
         option (google.api.http) = {
             post: "/user"
