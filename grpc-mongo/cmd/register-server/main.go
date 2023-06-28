@@ -57,7 +57,7 @@ func (s *userService) LogIn(ctx context.Context, req *userpb.LogInRequest) (*use
 		log.Println(".env file not found")
 		return &userpb.LogInResponse{
 			Success: false,
-			Message: "asdfadf",
+			Message: ".env file not found",
 		}, nil
 	}
 	MONGODB_URI := os.Getenv("MONGODB_URI")
@@ -67,16 +67,16 @@ func (s *userService) LogIn(ctx context.Context, req *userpb.LogInRequest) (*use
 	client := module.MongoConnection(MONGODB_URI)
 	defer module.MongoDisconnection(client)
 
-	module.MongoUserLogInFind(logIn, client.Database("grpc").Collection("users"))
+	result_user, _ := module.MongoUserLogInFind(logIn, client.Database("grpc").Collection("users"))
 
 	return &userpb.LogInResponse{
-		Success: false,
+		Success: true,
 		Message: "asdfadf",
 		User: &userpb.User{
-			Id:     "gadsf",
-			Name:   "",
-			Gender: "",
-			Email:  "",
+			Id:     result_user.Id,
+			Name:   result_user.Name,
+			Gender: result_user.Gender,
+			Email:  result_user.Email,
 		},
 	}, nil
 
