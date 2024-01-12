@@ -1,8 +1,9 @@
-go 1.18
+go 1.21.4
 
 use (
 	./REST_API_TEST1
 	./gRPC_test
 	./go-quickstart
 	./grpc-mongo
+	./mongo_insert_goRoutine
 )
