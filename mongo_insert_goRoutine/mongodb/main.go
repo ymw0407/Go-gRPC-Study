@@ -18,6 +18,8 @@ var (
 
 	UserColl   = &mongo.Collection{}
 	SchoolColl = &mongo.Collection{}
+	LoginColl  = &mongo.Collection{}
+	FriendColl = &mongo.Collection{}
 )
 
 func Initialize() {
@@ -39,6 +41,8 @@ func Initialize() {
 }
 
 func defineCollection() {
-	UserColl = Client.Database(name).Collection("userTest")
-	SchoolColl = Client.Database(name).Collection("schoolTest2")
+	UserColl = Client.Database(name).Collection("users")
+	SchoolColl = Client.Database(name).Collection("school")
+	// LoginColl = Client.Database(name).Collection("login")
+	FriendColl = Client.Database(name).Collection("friends")
 }

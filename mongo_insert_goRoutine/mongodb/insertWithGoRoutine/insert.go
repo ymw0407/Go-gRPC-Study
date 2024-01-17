@@ -23,7 +23,7 @@ func InsertTest(codes []string) {
 	i := 0
 
 	for i < len(codes) {
-		// for i < 3 {
+		// for i < 3
 		Wg.Add(1)
 		go Insert(codes[i])
 		i++

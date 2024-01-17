@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/ymw0407/Go-gRPC-Study/mongo_insert_goRoutine/mongodb"
 	"github.com/ymw0407/Go-gRPC-Study/mongo_insert_goRoutine/mongodb/find"
-	insert "github.com/ymw0407/Go-gRPC-Study/mongo_insert_goRoutine/mongodb/insertWithGoRoutine"
+	insertfriend "github.com/ymw0407/Go-gRPC-Study/mongo_insert_goRoutine/mongodb/insertFriendCollTest"
 )
 
 const ENV_FILE = ".env"
@@ -20,8 +20,10 @@ func main() {
 
 	initialize()
 	codes := find.FindSchool()
-	insert.SharedCode = codes
-	insert.InsertTest(codes)
+	// insert.SharedCode = codes
+	// insert.InsertTest(codes)
+	// insertLogin.InsertTest()
+	insertfriend.InsertTest(codes)
 }
 
 func initialize() (err error) {

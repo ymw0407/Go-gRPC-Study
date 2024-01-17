@@ -9,11 +9,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func FindSchool() []string {
+func FindSchool() []SchoolTest {
 
 	filter := bson.D{}
 
-	project := bson.D{{Key: "code", Value: 1}}
+	project := bson.D{{Key: "code", Value: 1}, {Key: "name", Value: 1}, {Key: "alias", Value: 1}}
 	opts := options.Find().SetProjection(project)
 
 	cursor, err := mongodb.SchoolColl.Find(context.TODO(), filter, opts)
@@ -21,7 +21,7 @@ func FindSchool() []string {
 		log.Println(err.Error())
 	}
 
-	var codes []string
+	var codes []SchoolTest
 
 	for cursor.Next(context.TODO()) {
 		var SchoolTest SchoolTest
@@ -30,7 +30,7 @@ func FindSchool() []string {
 			log.Println("user_find.go, MongoUserFind func : ", err)
 		}
 
-		codes = append(codes, SchoolTest.Code)
+		codes = append(codes, SchoolTest)
 	}
 
 	return codes
